@@ -1,14 +1,11 @@
 package com.mystore.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.FindBy;
 import static org.junit.Assert.*;
 
 
-public class MainPage extends BasePage{
+public class MainPage extends BasePage {
 
     @FindBy(xpath = "//a[@title='Women']/..")
     private WebElement womenClothesButton;
@@ -33,8 +30,6 @@ public class MainPage extends BasePage{
 
     public void clickOnWomenClothesButton(){
         wait.forElementVisible(womenClothesButton);
-        scrollAndClick(womenClothesButton);
-
     }
 
 
