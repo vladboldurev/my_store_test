@@ -1,12 +1,14 @@
 package com.mystore.pages.components;
 
+import com.mystore.pages.WomenClothesPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.FindBy;
 
+import com.mystore.pages.BasePage;
 
-public class ClothingCategoriesComponent extends BaseComponents{
+//TODO наследовтаь от BasePage
+public class ClothingCategoriesComponent extends BasePage{
 
     private WebDriver driver;
 
@@ -19,13 +21,29 @@ public class ClothingCategoriesComponent extends BaseComponents{
     @FindBy(xpath = "//a[@title='T-shirts']/..")
     private WebElement tShirtsCategoryButton;
 
-    public ClothingCategoriesComponent(WebDriver driver) {
-        super(driver);
+    public boolean womenCategoryButtonIsVisible(){
+        return isVisible(womenCategoryButton);
     }
 
-    public boolean womenCategoryButtonIsVisible(){
-        return
+    public boolean dressesCategoryButtonIsVisible(){
+        return isVisible(dressesCategoryButton);
     }
+
+    public boolean tShirtsCategoryButtonIsVisible(){
+        return isVisible(tShirtsCategoryButton);
+    }
+
+    public WomenClothesPage womenClothesPageClick(){
+        wait.forElementVisible(womenCategoryButton);
+        wait.forElementClickable(womenCategoryButton);
+        womenCategoryButton.click();
+        WomenClothesPage womenClothesPage = new WomenClothesPage();
+        womenClothesPage.waitForPageLoad();
+        return womenClothesPage;
+    }
+
+
+
 
 
 }

@@ -28,8 +28,15 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    public void clickOnWomenClothesButton(){
+    public boolean womenClothesButtonIsVisible(){
+        return isVisible(womenClothesButton);
+    }
+
+    public WomenClothesPage clickOnWomenClothesButton(){
         wait.forElementVisible(womenClothesButton);
+        wait.forElementClickable(womenClothesButton);
+        womenClothesButton.click();
+        return new WomenClothesPage();
     }
 
 

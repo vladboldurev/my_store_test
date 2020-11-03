@@ -1,9 +1,12 @@
 package com.mystore.pages;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.By;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -32,5 +35,26 @@ public class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     public void isLoaded() throws Error {}
+
+    public boolean isVisible(WebElement element) {
+        try {
+            wait.forElementVisible(element);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public void waitAndClick(WebElement webElement){
+        wait.forElementClickable(webElement).click();
+    }
+
+    public void waitAndFillInput(WebElement webElement, String value){
+        wait.forElementVisible(webElement).sendKeys(value);
+    }
+
+    public void waitForPageLoad(By by){
+        wait.forElementPresent(by);
+    }
 
 }
